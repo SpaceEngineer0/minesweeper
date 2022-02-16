@@ -1,0 +1,121 @@
+:root {
+	--gridSize: 9;
+	--tileSize: calc(600px / var(--gridSize));
+}
+
+body {
+	margin: 0;
+	font-family: monospace;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-size: cover;
+	background: linear-gradient(90deg, #b2d0dd 0%, #f3f3f3 100%);
+	image-rendering: pixelated;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.header {
+	display: inline-flex;
+	margin: 4px 0 4px;
+}
+
+.header > .title {
+	color: #616161;
+	font-family: Arial;
+	font-size: 72px;
+	margin-left: 10px;
+}
+
+.header > .logo {
+	align-self: center;
+	width: 75px;
+	height: 75px;
+}
+
+.bar {
+	display: inline-flex;
+	margin-bottom: 2px;
+	height: 22px;
+}
+
+.bar > * {
+	margin: 0 10px 0 10px;
+}
+
+.textEl {
+	font-size: 45px;
+	font-weight: bold;
+	color: #c81a1a;
+	margin-bottom: 2px;
+}
+
+.board {
+	display: inline-grid;
+	padding: 7px;
+	border: 2px solid grey;
+	border-radius: 4px;
+	grid-template-columns: repeat(var(--gridSize), var(--tileSize));
+	grid-template-rows: repeat(var(--gridSize), var(--tileSize));
+	gap: calc(var(--tileSize) / 10);
+	background-color: #bbb;
+	user-select: none;
+}
+
+.board > div {
+	width: 100%;
+	height: 100%;
+	border: 2px solid grey;
+	border-radius: 4px;
+	background-color: #ccc;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-size: cover;
+	image-rendering: pixelated;
+	cursor: pointer;
+}
+
+.board > [data-status='hidden'] {
+	background-color: #aaa;
+}
+
+.board > [data-status='flag'] {
+	background-image: url('./images/flag.png');
+}
+
+.board > [data-status='mine'] {
+	background-image: url('./images/mine.png');
+}
+
+.board > [data-status='number'] {
+	font-size: calc(var(--tileSize) * 0.75);
+	font-weight: bold;
+	cursor: default;
+	color: #ccc;
+}
+
+.board > [data-status='flag']:hover,
+.board > [data-status='hidden']:hover {
+	background-color: #bebebe;
+}
+
+.noHover {
+	pointer-events: none;
+}
+
+.incorrect {
+	background-color: #ffaaaa !important;
+}
+
+.num1 { color: #05a4c3 !important; }
+.num2 { color: #07888a !important; }
+.num3 { color: #6fad70 !important; }
+.num4 { color: #ee9b00 !important; }
+.num5 { color: #ca6702 !important; }
+.num6 { color: #bb3e03 !important; }
+.num7 { color: #ae2012 !important; }
+.num8 { color: #9b2226 !important; }
