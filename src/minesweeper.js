@@ -98,12 +98,3 @@ function mineLeftCount(board, maxMines) {
 	})
 	return count;
 }
-
-export {
-	checkLose,
-	checkWin,
-	createBoard,
-	mineLeftCount,
-	revealTile,
-	spawnMine
-}

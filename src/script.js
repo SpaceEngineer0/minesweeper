@@ -1,12 +1,3 @@
-import {
-	checkLose,
-	checkWin,
-	createBoard,
-	mineLeftCount,
-	revealTile,
-	spawnMine
-} from './minesweeper.js';
-
 const boardElement = document.querySelector('.board');
 const difficultySelector = document.querySelector('.diffSelector');
 const restartButton = document.querySelector('.restartButton');
