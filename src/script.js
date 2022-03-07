@@ -9,28 +9,29 @@ var board = [];
 var mineCount = 10;
 
 restartButton.addEventListener('click', () => {
-	if (difficultySelector.value === '0') {
-		size = 9;
-		mineCount = 10;
+	switch (difficultySelector.value) {
+		case '0':
+			size = 9;
+			mineCount = 10;
+			break;
+		case '1':
+			size = 19;
+			mineCount = 50;
+			break;
 	}
-	else if (difficultySelector.value === '1') {
-		size = 19;
-		mineCount = 50;
-	}
-	startGame(size, mineCount);
+
+	startGame();
 });
 
-startGame(size, mineCount);
-
-function startGame(size, mineCount) {
+function startGame() {
 	var clickCounter = 0;
 	board = createBoard(size, mineCount);
+	boardElement.addEventListener('contextmenu', e => e.preventDefault());
+	boardElement.classList.remove('noHover');
+	boardElement.innerHTML = '';
 	root.style.setProperty('--gridSize', size);
 	textElement.style.setProperty('color', '#eb2b2b')
 	textElement.textContent = mineCount;
-	boardElement.innerHTML = '';
-	boardElement.classList.remove('noHover');
-	boardElement.addEventListener('contextmenu', e => e.preventDefault());
 
 	board.forEach(row => {
 		row.forEach(tile => {
@@ -68,6 +69,7 @@ function checkEnd(board) {
 	if (win) {
 		textElement.style.setProperty('color', '#3ea0f7');
 		textElement.textContent = 'You won!';
+
 		board.forEach(row => {
 			row.forEach(tile => {
 				if (tile.isMine) tile.status = 'flag';
@@ -78,6 +80,7 @@ function checkEnd(board) {
 	if (lose) {
 		textElement.style.setProperty('color', '#eb2b2b');
 		textElement.textContent = 'You lose!';
+
 		board.forEach(row => {
 			row.forEach(tile => {
 				if (tile.isMine && tile.status !== 'flag') revealTile(null, tile);
@@ -86,3 +89,5 @@ function checkEnd(board) {
 		})
 	}
 }
+
+startGame();
